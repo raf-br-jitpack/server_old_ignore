@@ -1,5 +1,7 @@
 package com.example
 
+import com.example.model.Thing
+
 fun main() {
-    println("Hello, world!")
+    println("Hello, ${Thing("World")}!")
 }
