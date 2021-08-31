@@ -11,6 +11,7 @@ subprojects {
 
     apply {
         plugin("org.jetbrains.kotlin.jvm")
+        plugin("maven-publish")
     }
 
     val implementation by configurations
@@ -22,5 +23,17 @@ subprojects {
 
     tasks.withType<KotlinCompile> {
         kotlinOptions.jvmTarget = "11"
+    }
+
+    configure<PublishingExtension> {
+        publications {
+            create<MavenPublication>("maven") {
+                group = "com.example"
+                artifactId = project.name
+                version = "0.0.1"
+
+                from(components["kotlin"])
+            }
+        }
     }
 }
